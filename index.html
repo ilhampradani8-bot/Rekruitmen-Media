@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Recruitment Media Team - SOLVTECH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        /* --- WARNA BRANDING ORANGE SOLVTECH --- */
+        :root {
+            --primary: #F97316; /* Orange 500 */
+            --primary-dark: #EA580C; /* Orange 600 */
+            --primary-light: #FFEDD5; /* Orange 100 */
+        }
+
+        /* --- INPUT STYLE --- */
+        .input-solv { 
+            @apply w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all duration-300 text-gray-800 font-medium placeholder-gray-400; 
+        }
+
+        /* --- LOGIKA TOMBOL PILIH APLIKASI (FIXED) --- */
+        /* Sembunyikan checkbox asli tapi tetap ada untuk form data */
+        .hidden-checkbox { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+
+        /* Style Card Default */
+        .app-card {
+            @apply relative flex items-center justify-between p-4 border border-gray-200 bg-white rounded-xl cursor-pointer transition-all duration-200 select-none hover:bg-orange-50;
+        }
+
+        /* Style Card SAAT DIPILIH (CHECKED) */
+        .hidden-checkbox:checked + .app-card {
+            @apply border-orange-500 bg-orange-50 ring-2 ring-orange-500 shadow-md;
+        }
+
+        /* Teks jadi oranye saat dipilih */
+        .hidden-checkbox:checked + .app-card span {
+            @apply text-orange-700 font-bold;
+        }
+
+        /* Munculkan Icon Centang saat dipilih */
+        .check-icon { display: none; }
+        .hidden-checkbox:checked + .app-card .check-icon { display: block; }
+
+        /* --- ANIMASI --- */
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; opacity: 0; transform: translateY(15px); }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 pb-20">
+
+    <!-- CONTAINER UTAMA -->
+    <div class="max-w-xl mx-auto min-h-screen bg-white shadow-2xl relative border-x border-gray-100">
+        
+        <!-- HEADER HERO (ORANGE) -->
+        <div class="bg-gradient-to-br from-orange-600 to-red-600 px-8 pt-12 pb-16 rounded-b-[3rem] relative overflow-hidden text-center z-10 shadow-xl">
+            <!-- Background Shape -->
+            <div class="absolute top-0 left-0 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl -translate-x-10 -translate-y-10"></div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 bg-yellow-400 opacity-20 rounded-full blur-2xl translate-x-5 translate-y-5"></div>
+            
+            <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2 drop-shadow-sm">SOLVTECH</h1>
+            <div class="inline-flex items-center gap-2 bg-white/20 border border-white/30 px-4 py-1.5 rounded-full backdrop-blur-sm shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-green-300 animate-pulse"></span>
+                <span class="text-white text-[10px] md:text-xs font-bold tracking-widest uppercase">Media Team Hiring</span>
+            </div>
+            <p class="text-orange-50 mt-4 text-sm leading-relaxed max-w-xs mx-auto">
+                Kami mencari karakter petarung, bukan sekadar pekerja. Buktikan kreativitasmu di sini.
+            </p>
+        </div>
+
+        <!-- FORM AREA -->
+        <form action="https://formspree.io/f/xkgqwgla" method="POST" class="px-5 -mt-8 relative z-20 space-y-8">
+
+            <!-- 1. DATA PRIBADI -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 fade-in">
+                <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold">1</div>
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">Profil Kreator</h2>
+                        <p class="text-xs text-gray-400">Identitas & Portofolio</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Nama Lengkap</label>
+                        <input type="text" name="nama" required class="input-solv" placeholder="Nama Asli / Panggung">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">WhatsApp</label>
+                            <input type="tel" name="whatsapp" required class="input-solv" placeholder="08xxxxx">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Email</label>
+                            <input type="email" name="email" required class="input-solv" placeholder="Email aktif">
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100">
+                        <label class="block text-xs font-bold text-orange-800 uppercase mb-2">Instagram / TikTok (Wajib)</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-4 text-orange-400 font-bold">@</span>
+                            <input type="text" name="sosmed" required class="input-solv pl-10 border-orange-200 focus:ring-orange-400 bg-white" placeholder="username_kamu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. APPS (MOBILE FIRST) - FIXED BUTTONS -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 fade-in delay-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">2</div>
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">Senjata Mobile</h2>
+                        <p class="text-xs text-gray-400">Aplikasi HP yang kamu kuasai</p>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-500 mb-4 italic">Pilih yang biasa kamu pakai untuk konten cepat (Sat-Set):</p>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Item 1 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="CapCut" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">CapCut</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                    <!-- Item 2 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="VN Editor" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">VN Editor</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                    <!-- Item 3 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="Alight Motion" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">Alight Motion</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                    <!-- Item 4 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="Canva" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">Canva</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                    <!-- Item 5 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="Lightroom" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">Lightroom</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                    <!-- Item 6 -->
+                    <label class="relative block">
+                        <input type="checkbox" name="apps_mobile[]" value="InShot" class="hidden-checkbox">
+                        <div class="app-card">
+                            <span class="text-sm font-medium text-gray-600">InShot/Mojo</span>
+                            <svg class="w-5 h-5 text-orange-600 check-icon animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Input Lainnya -->
+                <div class="mt-4">
+                    <input type="text" name="apps_other" class="input-solv py-3 text-sm bg-gray-50" placeholder="Aplikasi lain? Tulis di sini...">
+                </div>
+
+                <!-- Device Info -->
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Tipe HP Kamu Saat Ini</label>
+                    <input type="text" name="device_info" required class="input-solv" placeholder="Contoh: iPhone 11 / Samsung A52 / Poco F4">
+                </div>
+            </div>
+
+            <!-- 3. MOTIVASI & KARAKTER (NEW) -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 fade-in delay-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">3</div>
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">Mentalitas & Karakter</h2>
+                        <p class="text-xs text-gray-400">Kami mencari 'SOLVER' bukan pengeluh.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Motivasi Gabung -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Kenapa ingin gabung SOLVTECH? Apa motivasi terbesarmu?</label>
+                        <textarea name="motivasi" rows="3" required class="input-solv" placeholder="Jujur saja, jangan jawaban template..."></textarea>
+                    </div>
+
+                    <!-- Karakter Test 1: Revisi -->
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <label class="block text-sm font-bold text-gray-800 mb-2">Skenario 1: Mental Baja</label>
+                        <p class="text-xs text-gray-500 mb-2 italic">"Kamu sudah edit video capek-capek selama 3 jam, tapi saat dikirim, atasan minta Revisi Total karena konsepnya kurang 'kena'. Apa reaksi pertamamu dan apa yang kamu lakukan?"</p>
+                        <textarea name="reaksi_revisi" rows="3" required class="input-solv bg-white" placeholder="Jawab sejujurnya..."></textarea>
+                    </div>
+
+                    <!-- Karakter Test 2: Belajar -->
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <label class="block text-sm font-bold text-gray-800 mb-2">Skenario 2: Problem Solving</label>
+                        <p class="text-xs text-gray-500 mb-2 italic">"Jika kamu diminta membuat efek visual yang kamu BELUM PERNAH buat sebelumnya, apa langkah yang kamu ambil?"</p>
+                        <textarea name="cara_belajar" rows="2" required class="input-solv bg-white" placeholder="Saya akan..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. FINALISASI -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 fade-in delay-3">
+                <div class="text-center mb-6">
+                    <h2 class="text-lg font-bold text-gray-900">Langkah Terakhir</h2>
+                </div>
+
+                <!-- Gaji & Tanggal -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Ekspektasi Gaji</label>
+                        <input type="text" name="gaji" required class="input-solv" placeholder="Rp ...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Siap Mulai</label>
+                        <input type="text" name="start_date" required class="input-solv" placeholder="Tgl/Bln">
+                    </div>
+                </div>
+
+                <!-- Link Portfolio -->
+                <div class="border-2 border-dashed border-orange-300 bg-orange-50 rounded-xl p-5 text-center">
+                    <label class="block text-sm font-bold text-orange-800 mb-1">Link Google Drive Portofolio</label>
+                    <p class="text-xs text-orange-600/70 mb-3">Wajib di-setting "Public / Anyone with the link".</p>
+                    <input type="url" name="link_portfolio" required class="w-full text-center bg-white border border-orange-200 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 text-sm outline-none placeholder-gray-400 text-orange-700 font-medium" placeholder="https://drive.google.com/...">
+                </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div class="pt-6 fade-in delay-3">
+                <button type="submit" class="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-extrabold py-5 rounded-2xl shadow-xl shadow-orange-500/30 transform transition active:scale-[0.98] flex items-center justify-center gap-2 text-lg uppercase tracking-wide">
+                    <span>Kirim Lamaran</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </button>
+                <p class="text-center text-gray-400 text-xs mt-6 font-medium">&copy; 2025 SOLVTECH RECRUITMENT SYSTEM</p>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+  </html>
